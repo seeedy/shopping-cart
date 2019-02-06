@@ -8,14 +8,16 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: productList.products,
             cart: {
-                selectedProducts: [],
+                cartItems: [],
                 discount: 0
-            }
+            },
+            products: productList.products,
+            total: null
         };
 
         this.addToCart = this.addToCart.bind(this);
+        this.getTotal = this.getTotal.bind(this);
     }
 
 
@@ -29,38 +31,54 @@ class App extends Component {
 
     addToCart(e) {
         const clickedId = parseInt(e.target.id);
-        const { selectedProducts } = this.state.cart;
+        const { cartItems } = this.state.cart;
 
         const addedProduct =
         this.state.products.find(item => item.id === clickedId);
 
-        const alreadySelected = selectedProducts.find(item => item.id === addedProduct.id);
+        const alreadySelected = cartItems.find(item => item.id === addedProduct.id);
 
         if (!alreadySelected) {
             console.log('inside not selected');
             addedProduct.amount = 1;
-            const updatedSelection = [...selectedProducts, addedProduct];
+            const updatedSelection = [...cartItems, addedProduct];
 
             this.setState({
-                cart: {...this.state.cart, selectedProducts: updatedSelection}
+                cart: {...this.state.cart, cartItems: updatedSelection}
             });
 
         } else {
             console.log('inside already selected');
 
-            const updatedAmount = alreadySelected.amount + 1;
-            const updatedProduct = {
-                ...alreadySelected,
-                amount: updatedAmount
-            };
-
-            const updatedSelection = [...selectedProducts.filter(item => item.id !== alreadySelected.id), updatedProduct];
-
-            this.setState({
-                cart: {...this.state.cart, selectedProducts: updatedSelection}
+            const updatedSelection = cartItems.map(item => {
+                if (item.id === alreadySelected.id) {
+                    item.amount++;
+                }
+                return item;
             });
 
+
+
+
+            this.setState({
+                cart: {
+                    ...this.state.cart,
+                    cartItems: updatedSelection
+                }
+            });
+
+            this.getTotal();
+
         }
+
+    }
+
+    getTotal() {
+        const { cartItems } = this.state.cart;
+        const total = cartItems.map(item => {
+            return item.price * item.amount;
+        })
+        console.log(total);
     }
 
 
@@ -72,7 +90,7 @@ class App extends Component {
       <div className="App">
         <Products products={this.state.products} addToCart={this.addToCart}/>
 
-        <Cart />
+        <Cart cart={this.state.cart} total={this.state.total}/>
       </div>
     );
   }

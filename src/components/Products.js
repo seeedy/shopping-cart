@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import AddToCartButton from './AddToCartButton';
 
 class Products extends Component {
     constructor(props) {
