@@ -1,0 +1,24 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Schnitzel",
+            "price": 100
+        },
+        {
+            "id": 2,
+            "name": "Pommes",
+            "price": 50
+        },
+        {
+            "id": 3,
+            "name": "Salat",
+            "price": 75
+        },
+        {
+            "id": 4,
+            "name": "Cola",
+            "price": 25
+        }
+    ]
+}

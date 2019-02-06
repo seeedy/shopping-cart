@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+}
+
+.App {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.Products {
+    height: 500px;
+    width: 600px;
+    min-width: 300px;
+    /* border: 1px solid blue; */
+    box-shadow: 0 3px 6px 0 grey;
+    margin: 2em;
+    padding: 1em;
+}
+
+.Cart {
+    height: 500px;
+    width: 450px;
+    min-width: 300px;
+    /* border: 1px solid blue; */
+    margin: 20px;
+    box-shadow: 0 3px 6px 0 grey;
+    margin: 2em;
+    padding: 1em;
+}
+
+.product {
+    border: 1px solid blue;
+    display: flex;
+    justify-content: space-between;
+}
