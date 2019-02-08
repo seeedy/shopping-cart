@@ -10,10 +10,10 @@ class App extends Component {
         this.state = {
             cart: {
                 cartItems: [],
-                discount: 0
+                discount: 0,
+                total: null
             },
             products: productList.products,
-            total: null
         };
 
         this.addToCart = this.addToCart.bind(this);
@@ -22,7 +22,6 @@ class App extends Component {
 
 
     componentDidMount() {
-        console.log(this.state.products);
     }
 
     componentDidUpdate() {
@@ -38,47 +37,58 @@ class App extends Component {
 
         const alreadySelected = cartItems.find(item => item.id === addedProduct.id);
 
+        let updatedCart;
+
+        // if item is not yet in cart, assign quantity 1
         if (!alreadySelected) {
-            console.log('inside not selected');
-            addedProduct.amount = 1;
-            const updatedSelection = [...cartItems, addedProduct];
+            addedProduct.quantity = 1;
+            updatedCart = [...cartItems, addedProduct];
 
             this.setState({
-                cart: {...this.state.cart, cartItems: updatedSelection}
+                cart: {...this.state.cart, cartItems: updatedCart}
             });
-
+        // if item already in cart, increase quantity by 1
         } else {
-            console.log('inside already selected');
-
-            const updatedSelection = cartItems.map(item => {
+            updatedCart = cartItems.map(item => {
                 if (item.id === alreadySelected.id) {
-                    item.amount++;
+                    item.quantity++;
                 }
                 return item;
             });
 
-
-
-
-            this.setState({
-                cart: {
-                    ...this.state.cart,
-                    cartItems: updatedSelection
-                }
-            });
-
-            this.getTotal();
-
         }
+
+
+        this.setState({
+            cart: {
+                ...this.state.cart,
+                cartItems: updatedCart
+            }
+        // callback after updating state to get the new sum total
+        }, () => {
+            this.getTotal()
+        });
+
+
+
 
     }
 
     getTotal() {
         const { cartItems } = this.state.cart;
-        const total = cartItems.map(item => {
-            return item.price * item.amount;
+        // multiplying price and quantity for each item using map
+        // then adding it up using reduce
+        const total = cartItems.map(
+            item => item.price * item.quantity).reduce(
+                (acc, cv) => acc + cv );
+        console.log('total', total);
+        this.setState({
+            ...this.state,
+            cart: {
+                ...this.state.cart,
+                total
+            }
         })
-        console.log(total);
     }
 
 

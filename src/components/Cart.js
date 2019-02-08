@@ -4,11 +4,11 @@ class Cart extends Component {
 
 
     componentDidMount() {
-        console.log(this.props);
+        console.log('props in cart', this.props);
     }
 
     render() {
-        const { cart, total } = this.props;
+        const { cart } = this.props;
         return (
             <div className="Cart">
                 <h1>Warenkorb</h1>
@@ -16,10 +16,10 @@ class Cart extends Component {
                     return (
                     <div key={item.id} className="cart-item">
                         <p>{item.name}</p>
-                        <p>{item.amount}</p>
+                        <p>{item.quantity}</p>
                     </div>);
                 })}
-                <div>Gesamt: {total}</div>
+                <div>Gesamt: {cart.total} </div>
             </div>
         )
 
