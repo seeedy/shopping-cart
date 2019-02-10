@@ -19,6 +19,7 @@ class App extends Component {
         this.addToCart = this.addToCart.bind(this);
         this.getTotal = this.getTotal.bind(this);
         this.updateQuantity = this.updateQuantity.bind(this);
+        this.setDiscount = this.setDiscount.bind(this);
     }
 
 
@@ -73,20 +74,50 @@ class App extends Component {
     }
 
     getTotal() {
-        const { cartItems } = this.state.cart;
+        const { cartItems, discount } = this.state.cart;
         // multiplying price and quantity for each item using map
         // then adding up using reduce
-        const total = cartItems.map(
+        const subtotal = cartItems.map(
             item => item.price * item.quantity).reduce(
                 (acc, cv) => acc + cv );
+        let total;
+        if (discount === 'fixed') {
+            total = subtotal - 2;
+        } else if (discount === 'percent') {
+            total = 0.9 * subtotal;
+        }
         console.log('total', total);
         this.setState({
             ...this.state,
             cart: {
                 ...this.state.cart,
+                subtotal,
                 total
             }
         })
+    }
+
+    setDiscount(e) {
+        console.log('inside setDiscount', e.target.value);
+        let discount;
+        if (e.target.value === "fixed") {
+            discount = 'fixed';
+        }
+
+        if (e.target.value === "percent") {
+            discount = 'percent';
+        }
+
+        this.setState({
+            ...this.state,
+            cart: {
+                ...this.state.cart,
+                discount
+            }
+        }, () => {
+            this.getTotal();
+        });
+
     }
 
     updateQuantity(e) {
@@ -129,8 +160,8 @@ class App extends Component {
       <div className="App">
         <Products products={this.state.products} addToCart={this.addToCart}/>
 
-        <Cart cart={this.state.cart} total={this.state.total}
-        updateQuantity={this.updateQuantity}/>
+        <Cart cart={this.state.cart} subtotal={this.state.subtotal}
+        updateQuantity={this.updateQuantity} setDiscount={this.setDiscount}/>
       </div>
     );
   }

@@ -4,6 +4,14 @@
 
 html, body {
     margin: 0;
+    font-family: "Open Sans", "Lucida Grande", Arial, sans-serif;
+    background: #f7f7f7;
+
+}
+
+h1 {
+    text-transform: uppercase;
+    font-family: "Barlow Condensed", "Roboto", Arial, sans-serif;
 }
 
 .App {
@@ -17,6 +25,7 @@ html, body {
     width: 600px;
     min-width: 300px;
     /* border: 1px solid blue; */
+    background: #fff;
     box-shadow: 0 3px 6px 0 grey;
     margin: 2em;
     padding: 1em;
@@ -27,7 +36,7 @@ html, body {
     width: 450px;
     min-width: 300px;
     /* border: 1px solid blue; */
-    margin: 20px;
+    background: #fff;
     box-shadow: 0 3px 6px 0 grey;
     margin: 2em;
     padding: 1em;
