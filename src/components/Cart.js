@@ -15,11 +15,15 @@ class Cart extends Component {
                 {cart && cart.cartItems.map(item => {
                     return (
                     <div key={item.id} className="cart-item">
-                        <p>{item.name}</p>
-                        <p>{item.quantity}</p>
+                        <div>{item.name}</div>
+                        <div className="cart-item-quantity">
+                            <input id={item.id} value={item.quantity}
+                            onChange={this.props.updateQuantity}>
+                            </input>
+                        </div>
                     </div>);
                 })}
-                <div>Gesamt: {cart.total} </div>
+                <div>Gesamt: {cart && cart.total} </div>
             </div>
         )
 

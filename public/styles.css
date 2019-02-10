@@ -38,3 +38,13 @@ html, body {
     display: flex;
     justify-content: space-between;
 }
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 0.5em;
+}
+
+.cart-item-quantity {
+    display: flex;
+}

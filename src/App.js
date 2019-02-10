@@ -18,6 +18,7 @@ class App extends Component {
 
         this.addToCart = this.addToCart.bind(this);
         this.getTotal = this.getTotal.bind(this);
+        this.updateQuantity = this.updateQuantity.bind(this);
     }
 
 
@@ -69,15 +70,12 @@ class App extends Component {
             this.getTotal()
         });
 
-
-
-
     }
 
     getTotal() {
         const { cartItems } = this.state.cart;
         // multiplying price and quantity for each item using map
-        // then adding it up using reduce
+        // then adding up using reduce
         const total = cartItems.map(
             item => item.price * item.quantity).reduce(
                 (acc, cv) => acc + cv );
@@ -91,6 +89,37 @@ class App extends Component {
         })
     }
 
+    updateQuantity(e) {
+        console.log(e.target.value);
+        const clickedId = parseInt(e.target.id);
+        const { cartItems } = this.state.cart;
+
+        const updatedItem = cartItems.find(item => item.id === clickedId);
+
+        updatedItem.quantity = e.target.value;
+
+        const updatedCartItems = cartItems.map(item => {
+            if (item.id === clickedId) {
+                item.quantity = e.target.value;
+            }
+            return item;
+        });
+
+        console.log('updatedItem', updatedItem);
+        console.log('updatedCartItems', updatedCartItems);
+
+        this.setState({
+            ...this.state,
+            cart: {
+                ...this.state.cart,
+                cartItems: updatedCartItems
+                }
+        }, () => {
+            this.getTotal()
+        });
+
+    }
+
 
 
 
@@ -100,7 +129,8 @@ class App extends Component {
       <div className="App">
         <Products products={this.state.products} addToCart={this.addToCart}/>
 
-        <Cart cart={this.state.cart} total={this.state.total}/>
+        <Cart cart={this.state.cart} total={this.state.total}
+        updateQuantity={this.updateQuantity}/>
       </div>
     );
   }
