@@ -11,6 +11,7 @@ class App extends Component {
             cart: {
                 cartItems: [],
                 discount: 0,
+                subtotal: null,
                 total: null
             },
             products: productList.products,
@@ -18,8 +19,9 @@ class App extends Component {
 
         this.addToCart = this.addToCart.bind(this);
         this.getTotal = this.getTotal.bind(this);
-        this.updateQuantity = this.updateQuantity.bind(this);
+        this.removeCartItem = this.removeCartItem.bind(this);
         this.setDiscount = this.setDiscount.bind(this);
+        this.updateQuantity = this.updateQuantity.bind(this);
     }
 
 
@@ -76,11 +78,18 @@ class App extends Component {
     getTotal() {
         const { cartItems, discount } = this.state.cart;
         // multiplying price and quantity for each item using map
-        // then adding up using reduce
-        const subtotal = cartItems.map(
-            item => item.price * item.quantity).reduce(
-                (acc, cv) => acc + cv );
+        // then adding up using reduce to get subtotal
+        let subtotal;
+        if (cartItems.length) {
+            subtotal = cartItems.map(
+                item => item.price * item.quantity).reduce(
+                    (acc, cv) => acc + cv );
+        } else {
+            subtotal = null;
+        }
+
         let total;
+        // calculate total with fixed or percentage discount
         if (discount === 'fixed') {
             total = subtotal - 2;
         } else if (discount === 'percent') {
@@ -95,6 +104,36 @@ class App extends Component {
                 total
             }
         })
+    }
+
+    removeCartItem(e) {
+        const clickedId = parseInt(e.target.id);
+        console.log(clickedId);
+
+        const { cartItems } = this.state.cart;
+
+        const itemToRemove =
+        cartItems.find(item => item.id === clickedId);
+
+        console.log(itemToRemove);
+
+        const updatedCart = cartItems.filter(item => {
+            return item.id !== clickedId
+        });
+
+            this.setState({
+                ...this.state,
+                cart: {
+                    ...this.state.cart,
+                    cartItems: updatedCart
+                }
+            }, () => {
+                this.getTotal();
+            });
+
+
+
+
     }
 
     setDiscount(e) {
@@ -121,13 +160,9 @@ class App extends Component {
     }
 
     updateQuantity(e) {
-        console.log(e.target.value);
+        // update item quantity on user input
         const clickedId = parseInt(e.target.id);
         const { cartItems } = this.state.cart;
-
-        const updatedItem = cartItems.find(item => item.id === clickedId);
-
-        updatedItem.quantity = e.target.value;
 
         const updatedCartItems = cartItems.map(item => {
             if (item.id === clickedId) {
@@ -135,9 +170,6 @@ class App extends Component {
             }
             return item;
         });
-
-        console.log('updatedItem', updatedItem);
-        console.log('updatedCartItems', updatedCartItems);
 
         this.setState({
             ...this.state,
@@ -161,6 +193,7 @@ class App extends Component {
         <Products products={this.state.products} addToCart={this.addToCart}/>
 
         <Cart cart={this.state.cart} subtotal={this.state.subtotal}
+        removeCartItem={this.removeCartItem}
         updateQuantity={this.updateQuantity} setDiscount={this.setDiscount}/>
       </div>
     );

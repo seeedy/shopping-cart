@@ -27,7 +27,7 @@ class Cart extends Component {
                             onChange={this.props.updateQuantity}>
                             </input>
                             <div className="remove-item">
-                            <i className="fas fa-trash" onClick={this.props.removeCartItem}></i>
+                                <i className="fas fa-trash" onClick={this.props.removeCartItem} id={item.id}></i>
                             </div>
                         </div>
 

@@ -1,5 +1,5 @@
 .Cart {
-    height: 500px;
+    height: 550px;
     width: 450px;
     min-width: 300px;
     background: #fff;
@@ -20,7 +20,9 @@
 
 .cart-item-quantity input {
     display: flex;
-    width: 40px;
+    font-family: "Open Sans", "Lucida Grande", Arial, sans-serif;
+    padding: 2px;
+    width: 48px;
 }
 
 .remove-item {
@@ -34,6 +36,7 @@
 }
 
 .fa-trash:hover {
+    color: #34d5ac;
     cursor: pointer
 }
 
