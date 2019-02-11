@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Products from './components/Products';
 import Cart from './components/Cart';
-import productList from './productList.json'
+import productList from './productList.json';
+import discountSettings from './discountSettings.json'
 
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
 
 
     componentDidMount() {
+        console.log(discountSettings.discounts.percent);
     }
 
     componentDidUpdate() {
@@ -88,12 +90,15 @@ class App extends Component {
             subtotal = null;
         }
 
-        let total;
+
         // calculate total with fixed or percentage discount
+        const { discounts } = discountSettings;
+        let total;
+        
         if (discount === 'fixed') {
-            total = subtotal - 2;
+            total = subtotal - discounts.fixed;
         } else if (discount === 'percent') {
-            total = 0.9 * subtotal;
+            total = (1 - discounts.percent) * subtotal;
         }
         console.log('total', total);
         this.setState({
@@ -130,9 +135,6 @@ class App extends Component {
             }, () => {
                 this.getTotal();
             });
-
-
-
 
     }
 
@@ -182,8 +184,6 @@ class App extends Component {
         });
 
     }
-
-
 
 
   render() {

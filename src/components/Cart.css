@@ -25,6 +25,10 @@
     width: 48px;
 }
 
+.cart-item-quantity input:focus {
+    outline: 2px solid #34d5ac;
+}
+
 .remove-item {
     display: flex;
     justify-content: center;

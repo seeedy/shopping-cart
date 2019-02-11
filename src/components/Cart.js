@@ -11,6 +11,15 @@ class Cart extends Component {
 
     render() {
         const { cart } = this.props;
+
+        if (!cart.cartItems[0]) {
+            return(
+                <div className="Cart">
+                    <h1>Warenkorb</h1>
+                    <p>Der Warenkorb ist leer.</p>
+                </div>
+            )
+        }
         return (
             <div className="Cart">
                 <h1>Warenkorb</h1>
