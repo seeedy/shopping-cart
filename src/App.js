@@ -94,13 +94,13 @@ class App extends Component {
         // calculate total with fixed or percentage discount
         const { discounts } = discountSettings;
         let total;
-        
+
         if (discount === 'fixed') {
             total = subtotal - discounts.fixed;
         } else if (discount === 'percent') {
             total = (1 - discounts.percent) * subtotal;
         }
-        console.log('total', total);
+
         this.setState({
             ...this.state,
             cart: {
@@ -164,24 +164,27 @@ class App extends Component {
     updateQuantity(e) {
         // update item quantity on user input
         const clickedId = parseInt(e.target.id);
+        const quant = parseInt(e.target.value);
         const { cartItems } = this.state.cart;
 
-        const updatedCartItems = cartItems.map(item => {
-            if (item.id === clickedId) {
-                item.quantity = e.target.value;
-            }
-            return item;
-        });
-
-        this.setState({
-            ...this.state,
-            cart: {
-                ...this.state.cart,
-                cartItems: updatedCartItems
+        if (quant > 0) {
+            const updatedCartItems = cartItems.map(item => {
+                if (item.id === clickedId) {
+                    item.quantity = e.target.value;
                 }
-        }, () => {
-            this.getTotal()
-        });
+                return item;
+            });
+
+            this.setState({
+                ...this.state,
+                cart: {
+                    ...this.state.cart,
+                    cartItems: updatedCartItems
+                    }
+            }, () => {
+                this.getTotal()
+            });
+        }
 
     }
 

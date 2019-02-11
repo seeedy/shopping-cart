@@ -31,6 +31,7 @@ class Cart extends Component {
                             <input
                             type="number"
                             min="1"
+                            max="99"
                             id={item.id}
                             value={item.quantity}
                             onChange={this.props.updateQuantity}>
