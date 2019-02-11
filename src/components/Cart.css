@@ -1,0 +1,47 @@
+.Cart {
+    height: 500px;
+    width: 450px;
+    min-width: 300px;
+    background: #fff;
+    box-shadow: 0 3px 6px 0 grey;
+    margin: 2em;
+    padding: 1em;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em;
+}
+
+.cart-item-quantity {
+    display: flex;
+}
+
+.cart-item-quantity input {
+    display: flex;
+    width: 40px;
+}
+
+.remove-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-trash {
+    margin-left: 15px;
+}
+
+.fa-trash:hover {
+    cursor: pointer
+}
+
+.item-subtotal {
+    padding: 0.5em;
+}
+
+.item-total {
+    padding: 0.5em;
+    font-weight: bold;
+}
