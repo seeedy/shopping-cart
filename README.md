@@ -1,5 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Spezifikation Coding-Challenge Warenkorb
 
 Verwendete Technologien: React.js (create-react-app), node.js, git
@@ -32,6 +30,9 @@ Wenn der User die Auswahl für seinen gewünschten Rabatt getroffen hat, wird se
  
  ************************************************************************************************
 
+
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
