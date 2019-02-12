@@ -3,6 +3,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Spezifikation Coding-Challenge Warenkorb
 
 Verwendete Technologien: React.js (create-react-app), node.js, git
+ 
+Live-Demo (heroku): https://warenkorb-react.herokuapp.com/ 
 
 ### Aufbau:
 In /src/App.js befindet sich die Parent-Component. Die weiteren Components befinden sich in src/components/. 
