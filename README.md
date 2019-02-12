@@ -4,18 +4,25 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Verwendete Technologien: React.js (create-react-app), node.js, git
 
-# Aufbau:
+### Aufbau:
 In /src/App.js befindet sich die Parent-Component. Die weiteren Components befinden sich in src/components/. 
 Products.js stellt die Produktauswahl dar und importiert die verfügbaren Produkte als Objekte aus productList.json. Dadurch kann die bestehende Produktauswahl oder die Properties von Produkten leicht überarbeitet werden, bzw. neue Produkte hinzugefügt werden, ohne den eigentlichen Code ändern zu müssen.
 Cart.js ist die Warenkorb-Komponente. Sie ist anfangs leer und der User kann über die Warenkorb-Buttons Produkte hinzufügen. Die Quantität kann dann über Input-Felder  im Warenkorb geändert werden und Produkte können durch Klicken des Mülleimer-Icons wieder aus dem Warenkorb entfernt werden.
 Discount.js beinhaltet eine Form mit Radio-Buttons, dass dem User erlaubt, zwischen einem absoluten und einem prozentualen Rabatt auszuwählen. Die Werte für die zwei Rabattarten können über die Datei discountSettings.json eingestellt werden.
 
-# Funktionalität:
+### Funktionalität:
 App.js beinhaltet den State der Applikation, der aus den zwei Objekten „cart“ und „products“ besteht. Cart hat das Array von Objekten cartItems, in dem die Produkte im Warenkorb sind. Zudem hat es die Properties discount, subtotal und total zur Berechnung der Gesamtsumme. Products beinhaltet die Produkt-Objekte.
 Die Funktionalität basiert auf den fünf Funktionen addToCart, removeCartItem, updateQuantity, setDiscount und getTotal in App.js, die jeweils per Props an children-components weiter gegeben werden.
 Wenn ein User ein auf den Button klickt um ein Produkt zum Warenkorb hinzuzufügen, wird die Funtion addToCart aufgerufen, die zunächst prüft, ob sich das Produkt bereits im Warenkorb befindet. Falls ja, wird die Quantität um 1 erhöht, andernfalls wird das Produkt neu hinzugefügt. Anschließend wird this.setState genutzt um den State upzudaten. Hier wird die Funktion getTotal als callback verwendet um Zwischensummen, Rabatt und Endsumme neu zu berechnen.
 Entfernen von Produkten oder Ändern der Menge funktioniert analog. Zunächst wird removeCartItem bzw. updateQuantitty aufgerufen, dann wird die Komponente über this.setState mit getTotal als callback upgedated.
- Wenn der User die Auswahl für seinen gewünschten Rabatt getroffen hat, wird setDiscount aufgerufen und der Discount-Typ in State gesetzt.
+Wenn der User die Auswahl für seinen gewünschten Rabatt getroffen hat, wird setDiscount aufgerufen und der Discount-Typ in State gesetzt.
+ 
+ 
+ 
+ 
+ 
+ 
+ ************************************************************************************************
 
 
 ## Available Scripts
