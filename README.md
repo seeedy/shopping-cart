@@ -17,11 +17,11 @@ App.js beinhaltet den State der Applikation, der aus den zwei Objekten „cart�
 
 Die Funktionalität basiert auf den fünf Funktionen addToCart, removeCartItem, updateQuantity, setDiscount und getTotal in App.js, die jeweils per Props an children-components weiter gegeben werden.
 
-Wenn ein User ein auf den Button klickt um ein Produkt zum Warenkorb hinzuzufügen, wird die Funtion addToCart aufgerufen, die zunächst prüft, ob sich das Produkt bereits im Warenkorb befindet. Falls ja, wird die Quantität um 1 erhöht, andernfalls wird das Produkt neu hinzugefügt. Anschließend wird this.setState genutzt um den State upzudaten. Hier wird die Funktion getTotal als callback verwendet um Zwischensummen, Rabatt und Endsumme neu zu berechnen.
+Wenn ein User ein auf den Button klickt um ein Produkt zum Warenkorb hinzuzufügen, wird die Funtion addToCart aufgerufen, die zunächst prüft, ob sich das Produkt bereits in state.cart.cartItems (im Warenkorb) befindet. Falls ja, wird die Quantität um 1 erhöht, andernfalls wird das Produkt-Objekt dem Array neu hinzugefügt. Anschließend wird this.setState genutzt um den State upzudaten. Hier wird die Funktion getTotal als callback verwendet um Zwischensummen, Rabatt und Endsumme neu zu berechnen.
 
-Entfernen von Produkten oder Ändern der Menge funktioniert analog. Zunächst wird removeCartItem bzw. updateQuantitty aufgerufen, dann wird die Komponente über this.setState mit getTotal als callback upgedated.
+Entfernen von Produkten oder Ändern der Menge funktioniert analog. Zunächst wird removeCartItem bzw. updateQuantity aufgerufen, dann wird die Komponente über this.setState mit getTotal als callback upgedated.
 
-Wenn der User die Auswahl für seinen gewünschten Rabatt getroffen hat, wird setDiscount aufgerufen und der Discount-Typ in State gesetzt.
+Wenn der User die Auswahl für seinen gewünschten Rabatt getroffen hat, wird setDiscount aufgerufen und der Discount-Typ im cart-Objekt im state gesetzt. Anschließend wird erneut getTotal aufgerufen um die Endsumme neu zu berechnen.
  
  
  
