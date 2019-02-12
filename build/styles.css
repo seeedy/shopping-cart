@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    font-family: "Open Sans", "Lucida Grande", Arial, sans-serif;
+    background: #f7f7f7;
+
+}
+
+h1 {
+    text-transform: uppercase;
+    font-family: "Barlow Condensed", "Roboto", Arial, sans-serif;
+}
+
+.App {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
