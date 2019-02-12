@@ -8,8 +8,6 @@ class Products extends Component {
         this.clickHandler = this.clickHandler.bind(this);
     }
 
-    componentDidMount() {
-    }
 
     clickHandler(e) {
         this.props.addToCart(e);
@@ -24,22 +22,18 @@ class Products extends Component {
                 <h1>Produktauswahl</h1>
                 {products && products.map(product => {
                     return (
-                        <div
-                            className="product"
-                            key={product.id}
-                        >
+                        <div className="product" key={product.id}>
                             <p>{product.name}</p>
                             <p>{product.price.toFixed(2)} €</p>
+
                             <div className="add-to-cart-button">
                                 <i id={product.id} onClick={this.clickHandler} className="fas fa-shopping-cart"></i>
                             </div>
-                        </div>
-                    )
+
+                        </div>)
                 })}
             </div>
-        )
-
-    }
+        )}
 }
 
 export default Products;

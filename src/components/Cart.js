@@ -4,14 +4,9 @@ import './Cart.css';
 
 class Cart extends Component {
 
-
-    componentDidMount() {
-        console.log('props in cart', this.props);
-    }
-
     render() {
         const { cart } = this.props;
-
+        // check cartItems array to display message if cart is empty
         if (!cart.cartItems[0]) {
             return(
                 <div className="Cart">
@@ -20,6 +15,7 @@ class Cart extends Component {
                 </div>
             )
         }
+
         return (
             <div className="Cart">
                 <h1>Warenkorb</h1>
@@ -45,9 +41,15 @@ class Cart extends Component {
                 })}
                 {cart.subtotal && <div className="discount">
                         <Discount setDiscount={this.props.setDiscount}/>
-                        <div className="item-subtotal">Zwischensumme: {cart.subtotal.toFixed(2)} €</div>
-                        <div className="item-subtotal">Rabatt: {((cart.total - cart.subtotal) || 0 ).toFixed(2)} €</div>
-                        <div className="item-total">Gesamt: {(cart.total || cart.subtotal).toFixed(2)} €</div>
+                        <div className="item-subtotal">
+                        Zwischensumme: {cart.subtotal.toFixed(2)} €
+                        </div>
+                        <div className="item-subtotal">
+                        Rabatt: {((cart.total - cart.subtotal) || 0).toFixed(2)} €
+                        </div>
+                        <div className="item-total">
+                        Gesamt: {(cart.total || cart.subtotal).toFixed(2)} €
+                        </div>
                 </div>}
             </div>
         )

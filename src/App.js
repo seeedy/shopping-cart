@@ -25,11 +25,6 @@ class App extends Component {
         this.updateQuantity = this.updateQuantity.bind(this);
     }
 
-
-    componentDidMount() {
-        console.log(discountSettings.discounts.percent);
-    }
-
     componentDidUpdate() {
         console.log('updated State', this.state);
     }
@@ -139,7 +134,7 @@ class App extends Component {
     }
 
     setDiscount(e) {
-        console.log('inside setDiscount', e.target.value);
+        //set chosen discount in state
         let discount;
         if (e.target.value === "fixed") {
             discount = 'fixed';
@@ -193,11 +188,17 @@ class App extends Component {
     return (
 
       <div className="App">
-        <Products products={this.state.products} addToCart={this.addToCart}/>
+        <Products
+        products={this.state.products}
+        addToCart={this.addToCart}
+        />
 
-        <Cart cart={this.state.cart} subtotal={this.state.subtotal}
+        <Cart
+        cart={this.state.cart}
+        subtotal={this.state.subtotal}
         removeCartItem={this.removeCartItem}
-        updateQuantity={this.updateQuantity} setDiscount={this.setDiscount}/>
+        updateQuantity={this.updateQuantity} setDiscount={this.setDiscount}
+        />
       </div>
     );
   }
